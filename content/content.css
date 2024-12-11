@@ -1,0 +1,36 @@
+/* Highlighted text styles */
+span.highlight {
+  background-color: yellow;
+  color: black;
+  font-weight: bold;
+}
+
+/* 设置整个页面的覆盖层 */
+#immersive-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 10000;
+  pointer-events: none;
+}
+
+/* #highlight-area {
+  position: absolute;
+  width: 100%;
+  background-color: transparent;
+  z-index: 2000;
+  height: 100px;
+} */
+
+#highlight-area {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 200px; /* Highlight height */
+  background-color: rgb(255, 255, 255,0.4); /* Lighter area */
+  z-index: 11000; /* Ensure it's above the overlay */
+  pointer-events: none; /* Prevent it from blocking interactions */
+}
