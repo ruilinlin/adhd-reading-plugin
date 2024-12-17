@@ -1,19 +1,36 @@
 
-if (!window.__highlightFirstLettersInitialized) {
-  window.__highlightFirstLettersInitialized = true;
 
-// Highlights the first letter of each word based on user settings
+
+// Step 1: Apply basic style to ensure all text is consistent
+const applyStyleToText = (root) => {
+  const nodes = root.querySelectorAll('*');
+  nodes.forEach(node => {
+    if (node.nodeType === 3 && node.nodeValue.trim() !== '') {
+      const computedStyle = window.getComputedStyle(node);
+      if (computedStyle.color !== 'black') {
+        node.style.color = 'black'; // Change non-black text to black
+      }
+    }
+  });
+
+  const iframe = document.querySelector('iframe.docs-texteventtarget-iframe');
+  if( iframe && iframe.contentDocument){
+    const docBody = iframe.contentDocument.body;
+    applyStyleToText(docBody);
+  
+};
+
+// Step 2: Highlight first letters
 const highlightFirstLetters = (style) => {
-  const body = document.body;
-  const walker = document.createTreeWalker(body, NodeFilter.SHOW_TEXT);
+  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
 
   while (walker.nextNode()) {
     const node = walker.currentNode;
 
     // Skip empty text nodes
-    if (node.textContent.trim() === "") continue;
+    if (node.nodeValue.trim() === "") continue;
 
-    const words = node.textContent.split(/\s+/); // Split text into words
+    const words = node.nodeValue.split(/\s+/); // Split text into words
     const fragment = document.createDocumentFragment();
 
     words.forEach((word, index) => {
@@ -37,13 +54,21 @@ const highlightFirstLetters = (style) => {
   }
 };
 
-// Example usage
-// highlightFirstLetters("background-color: yellow; color: black; font-weight: bold;");
+// Apply style to the entire document
+applyStyleToText(document.body);
 
-
-// Listen for messages from the background script
-//  highlightFirstLetters();
+// Initialize highlighting when necessary
+if (!window.__highlightFirstLettersInitialized) {
+  window.__highlightFirstLettersInitialized = true;
+  highlightFirstLetters("color: red; font-weight: bold;"); // Example style
 }
+
+
+/**
+ * immersive-overlay 
+ */
+
+
 
 let immersiveOverlay = document.createElement('div');
 immersiveOverlay.id = 'immersive-overlay';

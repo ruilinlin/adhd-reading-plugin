@@ -4,12 +4,37 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="popup.css">
+  <!-- <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2024.1.319/styles/kendo.default-v2.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://kendo.cdn.telerik.com/2024.1.319/js/kendo.all.min.js"></script> -->
+  <script src="popup.js"></script>
   <title>ADHD Plugin</title>
+  
 </head>
 <body>
-  <h1>ADHD Reading Assistant</h1>
-  <button id="enableHighlight">Enable Highlight</button>
-  <button id="disableHighlight">Disable Highlight</button>
-  <script src="popup.js"></script>
+   <!-- Tabs 切换区域 -->
+   <div class="tabs">
+    <button class="tab-link active" data-tab="themes">Themes</button>
+    <button class="tab-link" data-tab="settings">Settings</button>
+    <button class="tab-link" data-tab="customies">Customies</button>
+  </div>
+
+  <!-- 内容区域 -->
+  <div id="tab-content">
+    <!-- Themes 模块 -->
+    <div id="themes" class="tab-panel active">
+      <!-- themes.html 引入 -->
+    </div>
+
+    <!-- Settings 模块 -->
+    <div id="settings" class="tab-panel">
+      <!-- settings.html 引入 -->
+    </div>
+
+    <!-- Customies 模块 -->
+    <div id="customies" class="tab-panel">
+      <!-- customies.html 引入 -->
+    </div>
+  </div>
 </body>
 </html>
