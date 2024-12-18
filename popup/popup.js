@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const tabs = document.querySelectorAll(".tab-link");
   const panels = document.querySelectorAll(".tab-panel");
 
+
   tabs.forEach(tab => {
     tab.addEventListener("click", () => {
       // 移除所有 active 样式
@@ -80,12 +81,34 @@ function loadHTML(tabName, container) {
       })
       .then(data => {
         container.innerHTML = data;
+        // 在内容加载完成后调用 proofReadingToggle
+        if (tabName === "themes") {
+          proofReadingToggle();
+        }
       })
       .catch(error => {
         console.error("Error loading HTML:", error);
         container.innerHTML = `<p>Error loading content.</p>`;
       });
   }
-}
 
+  // proofReadingToggle 逻辑
+  function proofReadingToggle (){
+    const proofReadingToggle = document.getElementById("proofReadingToggle");
+    const proofReadingOptions = document.getElementById("proofReadingOptions");
+
+    if (proofReadingToggle) {
+      proofReadingToggle.addEventListener("change", () => {
+        if (proofReadingToggle.checked) {
+          proofReadingOptions.classList.remove("hidden");
+        } else {
+          proofReadingOptions.classList.add("hidden");
+        }
+      });
+    } else {
+      console.error("Proofreading toggle not found!");
+    }
+  }
+
+}
 

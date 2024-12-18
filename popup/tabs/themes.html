@@ -1,12 +1,34 @@
-<div class="module">
-  <h2>Themes</h2>
-  <label>
-    <input type="checkbox" id="immersiveModeToggle">
+<div class="toggle-container">
+  <!-- Immersive Mode -->
+  <label class="switch-label">
     Immersive Mode
+    <input type="checkbox" id="immersiveModeToggle" class="switch-input">
+    <span class="slider"></span>
   </label>
-  <br>
-  <label>
-    <input type="checkbox" id="proofReadingToggle">
+
+  <!-- ProofReading Mode -->
+  <label class="switch-label">
     Proofreading Mode
+    <input type="checkbox" id="proofReadingToggle" class="switch-input">
+    <span class="slider"></span>
   </label>
+
+  <!-- 子功能区域 -->
+  <div id="proofReadingOptions" class="options-container hidden">
+    <label class="sub-switch-label">
+      Focus Highlight
+      <input type="checkbox" id="focusHighlightToggle" class="switch-input">
+      <span class="slider"></span>
+    </label>
+    <label class="sub-switch-label">
+      Gradient Flow
+      <input type="checkbox" id="gradientFlowToggle" class="switch-input">
+      <span class="slider"></span>
+    </label>
+    <label class="sub-switch-label">
+      Smart Keywords
+      <input type="checkbox" id="smartKeywordsToggle" class="switch-input">
+      <span class="slider"></span>
+    </label>
+  </div>
 </div>

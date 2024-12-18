@@ -3,30 +3,54 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 10px;
-  background-color: #007bff;
-  color: white;
+  background-color: #d4d5d6;
+  color: rgb(69, 69, 69);
 }
 
-h1 {
+h2 {
   font-size: 20px;
   margin-bottom: 10px;
   text-align: center;
 }
-
+/* 
 .container {
   padding: 15px;
   border-radius: 8px;
   background-color: white;
   color: #333;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+} */
+.tabs {
+  display: flex; /* 使内容横向排列 */
+  justify-content: space-around; /* 平均分布按钮，并在空间中均匀排列 */
+  align-items: center; /* 垂直方向居中 */
+}
+
+.tab-link {
+  padding: 5px 10px;
+  cursor: pointer;
+  border: none;
+  background: #ddd;
+  margin-right: 10px;
+}
+
+.tab-link:last-child {
+  margin-right: 0; /* 最后一个按钮去掉右侧间距 */
+}
+
+.tab-link.active {
+  padding: 5px 10px;
+  background: #4caf50;
+  color: white;
+  margin-right: 10px;
 }
 
 button {
   display: block;
   width: 100%;
   padding: 10px;
-  background-color: #007bff;
-  color: white;
+  background-color: #8d8e8f;
+  color: rgb(57, 57, 57);
   border: none;
   border-radius: 4px;
   text-align: center;
@@ -34,12 +58,90 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #87d18a;
 }
 
-.footer {
-  text-align: center;
-  font-size: 12px;
+button:active {
+  background-color: #87d18a;
+}
+
+.tab-panel {
+  display: none;
   margin-top: 10px;
-  color: #ddd;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+
+
+
+/* 主题界面容器样式 */
+/* Container 基本样式 */
+.toggle-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 20px;
+}
+
+/* 开关的 Label 样式 */
+.switch-label, .sub-switch-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f4f4f4;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* 子功能区域 */
+.options-container {
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* 隐藏样式 */
+.hidden {
+  display: none;
+}
+
+/* 开关样式 */
+.switch-input {
+  display: none;
+}
+
+.slider {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  background-color: #ccc;
+  border-radius: 20px;
+  transition: background-color 0.3s;
+}
+
+.slider::before {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background-color: white;
+  border-radius: 50%;
+  top: 1px;
+  left: 1px;
+  transition: transform 0.3s;
+}
+
+.switch-input:checked + .slider {
+  background-color: #4caf50;
+}
+
+.switch-input:checked + .slider::before {
+  transform: translateX(20px);
 }
