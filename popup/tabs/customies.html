@@ -1,44 +1,26 @@
-
-
-<div class="module"></div>
-
+<div class="module">
   <!-- Focus Highlight Settings -->
-  <div id="focusHighlightSettings" class="hidden">
-    <label>
-      Font Size
-      <input type="number" id="fontSizeInput" min="10" max="50" value="16">
-    </label>
-    <label>
-      Font Weight
-      <select id="fontWeightSelect">
-        <option value="normal">Normal</option>
-        <option value="bold">Bold</option>
-      </select>
-    </label>
-    <label>
-      Italics
-      <input type="checkbox" id="fontItalicToggle">
-    </label>
-    <label>
-      Color
-      <input type="color" id="fontColorPicker">
-    </label>
+  <div id="focusHighLightOptions" class="settings-group">
+    <h3>Focus Highlight</h3>
+    <div class="option-row">
+      <label>
+        Highlight Width
+        <input type="range" id="highlightWidth" min="1" max="5" value="3">
+      </label>
+    </div>
+    <!-- Add more focus highlight options -->
   </div>
-
+  
   <!-- Gradient Flow Settings -->
-  <div id="gradientFlowSettings" class="hidden">
-    <label>
-      Gradient Start Color
-      <input type="color" id="gradientStartColorPicker">
-    </label>
-    <label>
-      Gradient End Color
-      <input type="color" id="gradientEndColorPicker">
-    </label>
-    <label>
-      Opacity
-      <input type="range" id="opacitySlider" min="0" max="1" step="0.1" value="0.8">
-    </label>
+  <div id="gradientFlowOptions" class="settings-group">
+    <h3>Gradient Flow</h3>
+    <div class="option-row">
+      <label>
+        Flow Speed
+        <input type="range" id="flowSpeed" min="1" max="10" value="5">
+      </label>
+    </div>
+    <!-- Add more gradient flow options -->
   </div>
 </div>
 
