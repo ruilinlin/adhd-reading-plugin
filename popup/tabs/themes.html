@@ -1,17 +1,53 @@
-<div class="toggle-container">
+<div class="mode-section">
   <!-- Immersive Mode -->
-  <label class="switch-label">
-    Immersive Mode
-    <input type="checkbox" id="immersiveModeToggle" class="switch-input">
-    <span class="slider"></span>
-  </label>
+  <div class="mode-header">
+    <h3>Immersive Mode</h3>
+    <label class="switch">
+      <input type="checkbox" id="immersiveModeToggle">
+      <span class="slider round"></span>
+    </label>
+  </div>
 
-  <!-- ProofReading Mode -->
-  <label class="switch-label">
-    Proofreading Mode
-    <input type="checkbox" id="proofReadingToggle" class="switch-input">
-    <span class="slider"></span>
-  </label>
+  <!-- Reader Mode -->
+  <div class="mode-header">
+    <h3>Reader Mode</h3>
+    <label class="switch">
+      <input type="checkbox" id="readerModeToggle">
+      <span class="slider round"></span>
+    </label>
+  </div>
+  <div id="readerModeOptions" class="mode-options hidden">
+    <div class="option-group">
+      <button id="downloadPage" class="action-button">
+        <i class="fas fa-download"></i> Download Page
+      </button>
+      <button id="copyLink" class="action-button">
+        <i class="fas fa-link"></i> Copy Link
+      </button>
+    </div>
+    <div class="annotation-tools">
+      <div class="tool-group">
+        <button class="annotation-tool" data-type="highlight">
+          <i class="fas fa-highlighter"></i>
+        </button>
+        <button class="annotation-tool" data-type="note">
+          <i class="fas fa-sticky-note"></i>
+        </button>
+        <button class="annotation-tool" data-type="underline">
+          <i class="fas fa-underline"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Proofreading Mode -->
+  <div class="mode-header">
+    <h3>Proofreading Mode</h3>
+    <label class="switch">
+      <input type="checkbox" id="proofReadingToggle">
+      <span class="slider round"></span>
+    </label>
+  </div>
 
   <!-- 子功能区域 -->
   <div id="proofReadingOptions" class="options-container hidden">

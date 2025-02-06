@@ -1,0 +1,213 @@
+.adhd-reader-container {
+  --reader-bg: #fff;
+  --reader-text: #333;
+  --reader-line-height: 1.6;
+  --reader-font-size: 18px;
+  --reader-width: 800px;
+  --reader-padding: 2rem;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  .adhd-reader-container {
+    --reader-bg: #1a1a1a;
+    --reader-text: #e0e0e0;
+  }
+}
+
+#adhd-reader-container {
+  background: var(--reader-bg);
+  color: var(--reader-text);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+#adhd-reader-content {
+  max-width: var(--reader-width);
+  margin: 60px auto 2rem;
+  padding: var(--reader-padding);
+  line-height: var(--reader-line-height);
+  font-size: var(--reader-font-size);
+}
+
+#adhd-reader-toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background: var(--reader-bg);
+  border-bottom: 1px solid rgba(127, 127, 127, 0.2);
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  gap: 1rem;
+  z-index: 1;
+}
+
+.adhd-toolbar-button {
+  padding: 8px 12px;
+  border: none;
+  background: none;
+  color: var(--reader-text);
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.adhd-toolbar-button:hover {
+  background: rgba(127, 127, 127, 0.2);
+}
+
+.adhd-highlight {
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.adhd-highlight:hover {
+  filter: brightness(0.9);
+}
+
+.adhd-note {
+  border-bottom: 2px dotted #4a9eff;
+  cursor: help;
+}
+
+/* Typography */
+#adhd-reader-content h1 {
+  font-size: 2.5em;
+  margin-bottom: 1em;
+}
+
+#adhd-reader-content h2 {
+  font-size: 2em;
+  margin: 1.5em 0 0.5em;
+}
+
+#adhd-reader-content p {
+  margin-bottom: 1.2em;
+}
+
+#adhd-reader-content img {
+  max-width: 100%;
+  height: auto;
+  margin: 1em 0;
+}
+
+/* Annotations panel */
+#adhd-annotations-panel {
+  position: fixed;
+  right: 0;
+  top: 50px;
+  bottom: 0;
+  width: 300px;
+  background: var(--reader-bg);
+  border-left: 1px solid rgba(127, 127, 127, 0.2);
+  padding: 1rem;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+}
+
+#adhd-annotations-panel.show {
+  transform: translateX(0);
+}
+
+.adhd-annotation-item {
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 4px;
+  background: rgba(127, 127, 127, 0.1);
+}
+
+/* Settings panel */
+#adhd-reader-settings {
+  position: fixed;
+  left: 0;
+  top: 50px;
+  bottom: 0;
+  width: 250px;
+  background: var(--reader-bg);
+  border-right: 1px solid rgba(127, 127, 127, 0.2);
+  padding: 1rem;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+#adhd-reader-settings.show {
+  transform: translateX(0);
+}
+
+.adhd-settings-group {
+  margin-bottom: 1.5rem;
+}
+
+.adhd-settings-group h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.1em;
+}
+
+/* Font size controls */
+.font-size-controls {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* Theme selector */
+.theme-selector {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+.theme-option {
+  padding: 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.theme-option.active {
+  background: rgba(127, 127, 127, 0.2);
+}
+
+.annotation-item {
+  position: relative;
+  transition: transform 0.2s;
+}
+
+.annotation-item:hover {
+  transform: translateX(-5px);
+}
+
+.annotation-actions button {
+  padding: 4px 8px;
+  margin-right: 5px;
+  border: none;
+  border-radius: 4px;
+  background: #e0e0e0;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.annotation-actions button:hover {
+  background: #d0d0d0;
+}
+
+.color-picker button.active {
+  transform: scale(1.2);
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #000;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.tag {
+  padding: 2px 6px;
+  background: #e0e0e0;
+  border-radius: 12px;
+  font-size: 12px;
+} 
