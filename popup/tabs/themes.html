@@ -50,21 +50,35 @@
   </div>
 
   <!-- 子功能区域 -->
-  <div id="proofReadingOptions" class="options-container hidden">
-    <label class="sub-switch-label">
-      Focus Highlight
-      <input type="checkbox" id="focusHighlightToggle" class="switch-input">
-      <span class="slider"></span>
-    </label>
-    <label class="sub-switch-label">
-      Gradient Flow
-      <input type="checkbox" id="gradientFlowToggle" class="switch-input">
-      <span class="slider"></span>
-    </label>
-    <label class="sub-switch-label">
-      Smart Keywords
-      <input type="checkbox" id="smartKeywordsToggle" class="switch-input">
-      <span class="slider"></span>
-    </label>
+  <div id="proofReadingOptions" class="mode-options hidden">
+    <div class="option-item">
+      <label>
+        <input type="checkbox" id="highlightFirstLetters">
+        Highlight first letters
+      </label>
+      <input type="number" id="letterCount" min="1" max="5" value="3" class="small-input">
+    </div>
+    
+    <div class="option-item">
+      <label>
+        <input type="checkbox" id="sentenceGradient">
+        Sentence gradient
+      </label>
+      <select id="gradientStyle">
+        <option value="subtle">Subtle</option>
+        <option value="medium">Medium</option>
+        <option value="strong">Strong</option>
+      </select>
+    </div>
+    
+    <div class="option-item">
+      <label>
+        <input type="checkbox" id="smartKeywords">
+        Smart keywords
+      </label>
+      <input type="text" id="apiEndpoint" 
+             placeholder="API endpoint (optional)" 
+             class="full-width">
+    </div>
   </div>
 </div>

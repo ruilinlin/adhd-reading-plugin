@@ -1,99 +1,76 @@
-以下是根据你插件需求编写的 **README.md** 文件示例，包含详细描述和功能概述：
+# ADHD Reading Assistant Chrome Extension  
+
+## Overview  
+
+**ADHD Reading Assistant** is a Chrome extension designed to help users improve focus and reading efficiency. With multiple functional modules, such as Immersive Mode, Sentence-by-Sentence Display Mode, Custom Themes, and Reading Time Reminders, this extension optimizes the reading experience, enabling users to absorb information more efficiently in a shorter amount of time.  
 
 ---
 
-# ADHD 阅读辅助 Chrome 插件
+## Features  
 
-## 概述
+### 1. **Immersive Mode**  
+- Helps users focus on webpage content by highlighting text and dimming the background to reduce distractions.  
+- Minimizes visual clutter, making it easier for users to concentrate.  
 
-**ADHD 阅读辅助插件** 是一个基于 Chrome 的扩展工具，旨在帮助用户提高专注力和阅读效率。通过多种功能模块，如沉浸模式、逐句显示模式、自定义主题以及阅读时间提醒，插件旨在优化用户的阅读体验，让用户在更短的时间内更高效地吸收信息。
+### 2. **Sentence-by-Sentence Display Mode**  
+- Displays text one sentence at a time to help users maintain focus.  
+- Reduces eye movement, promoting more efficient reading.  
 
----
+### 3. **Custom Themes**  
+- Allows users to personalize settings such as colors, font size, and transparency to suit their preferences.  
+- Provides multiple theme options to enhance the reading environment.  
 
-## 功能概述
-
-### 1. **沉浸模式**  
-- 帮助用户专注于网页内容，通过高亮显示和背景暗化，减少干扰。  
-- 提供更少的视觉分散，让用户更容易集中注意力。
-
-### 2. **逐句显示模式**  
-- 提供逐句显示文本，帮助用户提高专注度。  
-- 减少眼睛的移动，促进更高效的阅读。
-
-### 3. **自定义主题**  
-- 用户可以定制颜色、字体大小、透明度等设置，以满足个性化需求。  
-- 提供多种主题选项，帮助用户根据自己的喜好调整阅读环境。
-
-### 4. **阅读时间提醒**  
-- 用户可以设置定时器，帮助合理规划阅读时间，避免长时间过度阅读造成的疲劳。  
-- 使用 Chrome 的 alarms API 实现，帮助用户提高生产力。
+### 4. **Reading Time Reminder**  
+- Users can set a timer to better manage reading sessions and prevent fatigue from prolonged reading.  
+- Utilizes Chrome's alarms API to help users stay productive.  
 
 ---
 
-## 技术栈
+## Tech Stack  
 
-- **HTML/CSS/JavaScript**：负责构建插件的 UI 界面及功能逻辑。
-- **Chrome 扩展 API**：  
-  - **Manifest V3**：用于插件的配置和发布。
-  - **content scripts**：处理网页 DOM 操作和简化功能。
-  - **background scripts**：管理插件生命周期、设置存储及定时提醒功能。
-- **storage API**：用于存储用户自定义设置。
-- **alarms API**：用于阅读时间提醒功能。
-
----
-
-## 文件结构
-
-```
-adhd-reader-extension/
-│
-├── manifest.json            # Chrome 插件配置文件
-├── popup.html               # 插件主界面，整合所有模块
-├── popup.js                 # 主逻辑控制文件
-├── styles.css               # 通用样式文件
-│
-├── themes.html              # Themes 功能模块
-├── settings.html            # Settings 功能模块
-├── customies.html           # Customies 功能模块
-│
-├── tabs/                    # 子模块 JavaScript 文件夹
-│   ├── themes.js            # Themes 功能逻辑
-│   ├── settings.js          # Settings 功能逻辑
-│   ├── customies.js         # Customies 功能逻辑
-│
-└── icons/                   # 图标文件夹
-```
+- **HTML/CSS/JavaScript**: Used to build the UI and implement functionality.  
+- **Chrome Extension APIs**:  
+  - **Manifest V3**: For extension configuration and publishing.  
+  - **Content Scripts**: Handles webpage DOM manipulations and core functionalities.  
+  - **Background Scripts**: Manages extension lifecycle, storage, and timed reminders.  
+- **Storage API**: Stores user preferences.  
+- **Alarms API**: Implements reading time reminders.  
 
 ---
 
-## 使用
+## File Structure  
 
-### 1. **打开插件主界面**  
-- 在 Chrome 扩展页面中点击插件图标即可打开主界面。  
-- 主界面分为 Themes、Settings 和 Customies 选项卡，用户可以根据需求进行切换。
-
-### 2. **Themes 模块**  
-- 启用“沉浸模式”可帮助用户专注于阅读内容。  
-- 启用“逐句显示”以减少干扰，帮助专注于内容。
-
-### 3. **Settings 模块**  
-- 用户可以启用或禁用不同功能，如“自动高亮”，以及设置阅读时间提醒。
-
-### 4. **Customies 模块**  
-- 提供自定义颜色主题、字体大小等设置，为用户带来更个性化的阅读体验。
 
 ---
 
-## 许可证
+## Usage  
 
-此项目基于 MIT 许可证，详情请参阅 [LICENSE](LICENSE) 文件。
+### 1. **Opening the Extension Interface**  
+- Click on the extension icon in Chrome’s toolbar to open the main interface.  
+- The interface consists of three tabs: **Themes**, **Settings**, and **Customies**, which users can switch between as needed.  
+
+### 2. **Themes Module**  
+- Enabling "Immersive Mode" helps users focus on the reading content.  
+- Enabling "Sentence-by-Sentence Display" reduces distractions and enhances focus.  
+
+### 3. **Settings Module**  
+- Users can enable or disable various features, such as automatic text highlighting, and configure reading time reminders.  
+
+### 4. **Customies Module**  
+- Provides customization options for colors, font sizes, and other settings, offering a more personalized reading experience.  
 
 ---
 
-## 贡献
+## License  
 
-欢迎任何贡献者提交代码或反馈意见。请参考 [CONTRIBUTING.md](CONTRIBUTING.md) 文件了解如何参与。
+This project is licensed under the MIT License. For details, please refer to the [LICENSE](LICENSE) file.  
 
 ---
 
-通过这份插件，你可以为用户提供一个高效的阅读工具，帮助他们提高专注力和阅读速度，特别对有阅读障碍或专注力障碍的用户有帮助。
+## Contributions  
+
+Contributions are welcome! If you'd like to submit code or provide feedback, please refer to the [CONTRIBUTING.md](CONTRIBUTING.md) file for guidelines on how to participate.  
+
+---
+
+With this extension, users can enjoy an efficient reading tool that enhances focus and reading speed, making it especially helpful for individuals with reading difficulties or attention disorders.

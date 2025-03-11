@@ -1,13 +1,11 @@
 {
   "manifest_version": 3,
-  "name": "ADHD Reading Assistant",
+  "name": "ADHD Reader",
   "version": "1.0",
-  "description": "A plugin to assist ADHD users in reading by highlighting and customizing content.",
+  "description": "A Chrome extension to help ADHD readers focus on content",
   "permissions": [
     "activeTab",
-    "scripting",
-    "storage",
-    "tabs"
+    "storage"
   ],
   "web_accessible_resources": [
     {
@@ -33,10 +31,17 @@
       "matches": ["<all_urls>"],
       "js": [
         "lib/readability.js",
+        "content/modules/utils.js",
+        "content/modules/ProofreadingMode.js",
+        "content/modules/ImmersiveMode.js",
+        "content/modules/ReaderMode.js",
         "content/content.js"
       ],
+      "css": [
+        "content/content.css",
+        "content/reader.css"
+      ],
       "all_frames": false, 
-      "css": ["content/content.css"],
       "run_at": "document_start"
     }
   ],
