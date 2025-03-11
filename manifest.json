@@ -12,7 +12,8 @@
       "resources": [
         "popup/tabs/themes.html",
         "popup/tabs/settings.html",
-        "popup/tabs/customies.html"
+        "popup/tabs/customies.html",
+        "fonts/*"
       ],
       "matches": ["<all_urls>"]
     }

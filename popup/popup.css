@@ -145,3 +145,56 @@ button:active {
 .switch-input:checked + .slider::before {
   transform: translateX(20px);
 }
+
+.action-button,
+.annotation-tool {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  background: #f0f0f0;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  min-width: 80px;  /* 确保按钮有最小宽度 */
+}
+
+.action-button:hover,
+.annotation-tool:hover {
+  background: #e0e0e0;
+}
+
+.action-button i,
+.annotation-tool i {
+  font-size: 16px;
+}
+
+.tool-group {
+  display: flex;
+  gap: 8px;
+  justify-content: center;  /* 居中对齐工具组 */
+  margin: 10px 0;  /* 添加上下边距 */
+}
+
+.annotation-tool {
+  flex-direction: column;  /* 垂直排列图标和文字 */
+  align-items: center;    /* 水平居中对齐 */
+  text-align: center;
+  padding: 8px;          /* 调整内边距 */
+}
+
+.tool-label {  /* 新增：文字标签样式 */
+  font-size: 12px;
+  margin-top: 4px;
+  display: block;  /* 确保文字显示 */
+  white-space: nowrap;  /* 防止文字换行 */
+}
+
+/* 确保图标和文字都显示 */
+.annotation-tool i,
+.annotation-tool .tool-label {
+  display: block;
+  visibility: visible;
+}
+

@@ -111,43 +111,60 @@ function loadHTML(tabName, container) {
   }
 
 
+
+
+
+
+
+
+  /**
+   * theme mode initialization
+   * including three modes:immersive mode, proofReading mode, reader mode
+   * 
+   * 
+   * 
+   * 
+   */
+
   function initializeThemeModes() {
+    // get mode state from local storage
     const modeState = JSON.parse(localStorage.getItem("modeState")) || {};
 
+
+
+    
     // Immersive Mode initialization
     const immersiveModeToggle = document.getElementById("immersiveModeToggle");
-    const proofReadingToggle = document.getElementById("proofReadingToggle");
-    const proofReadingOptions = document.getElementById("proofReadingOptions");
-  
-    const focusHighlightToggle = document.getElementById("focusHighlightToggle");
-    const gradientFlowToggle = document.getElementById("gradientFlowToggle");
   
     if (immersiveModeToggle) {
       immersiveModeToggle.checked = modeState.immersiveMode || false;
 
       immersiveModeToggle.addEventListener("change", async () => {
         try {
+          // get current active tab and check if it is valid
           const [tab] = await chrome.tabs.query({active: true, currentWindow: true});
           
           if (!await isValidTab(tab)) {
+            // if not valid, set the toggle to false and alert the user
             console.warn('Cannot inject scripts into this type of page');
             immersiveModeToggle.checked = false;
             alert('This feature is not available on browser system pages.');
             return;
           }
 
-          // 注入内容脚本
+          // if valid，inject the content script
           try {
             await chrome.scripting.executeScript({
               target: { tabId: tab.id },
               function: () => {
-                // 确保页面已完全加载
+                // check if the page is fully loaded
                 if (document.readyState === 'complete') {
                   return window.hasOwnProperty('immersiveMode');
                 }
                 return false;
               }
             }).then(async (results) => {
+              // 
               if (!results[0].result) {
                 await chrome.scripting.executeScript({
                   target: { tabId: tab.id },
@@ -155,11 +172,12 @@ function loadHTML(tabName, container) {
                 });
               }
               
-              // 发送切换消息
+              // send the toggle message to the content script
               chrome.tabs.sendMessage(tab.id, {
                 action: "toggleImmersiveMode",
                 enabled: immersiveModeToggle.checked
               }, (response) => {
+                // if there is an error, set the toggle to false and alert the user
                 if (chrome.runtime.lastError) {
                   console.error('Error:', chrome.runtime.lastError);
                   immersiveModeToggle.checked = false;
@@ -169,6 +187,7 @@ function loadHTML(tabName, container) {
               });
             });
           } catch (error) {
+            // if there is an error, set the toggle to false and alert the user
             console.error('Script injection error:', error);
             immersiveModeToggle.checked = false;
             alert('Unable to activate this feature on the current page.');
@@ -180,6 +199,10 @@ function loadHTML(tabName, container) {
       });
     }
   
+
+
+
+
     // Reader Mode initialization
     const readerModeToggle = document.getElementById("readerModeToggle");
     const readerModeOptions = document.getElementById("readerModeOptions");
@@ -187,13 +210,23 @@ function loadHTML(tabName, container) {
     if (readerModeToggle) {
       readerModeToggle.checked = modeState.readerMode || false;
       
-      // 显示/隐藏选项
+      // toggle the options visibility
       toggleOptionsVisibility(readerModeToggle, "readerModeOptions");
 
       readerModeToggle.addEventListener("change", async () => {
         try {
           const [tab] = await chrome.tabs.query({active: true, currentWindow: true});
-          
+/**
+ * interface Tab {
+ *  id?: number;           // 标签页的唯一标识符
+ *  url?: string;          // 标签页的 URL
+  * title?: string;        // 标签页的标题
+  * active: boolean;       // 是否是当前活动的标签页
+  * status?: string;       // 加载状态 ("loading" 或 "complete")
+  * windowId: number;      // 所属窗口的 ID
+}
+*/
+
           if (!await isValidTab(tab)) {
             console.warn('Cannot inject scripts into this type of page');
             readerModeToggle.checked = false;
@@ -201,7 +234,7 @@ function loadHTML(tabName, container) {
             return;
           }
 
-          // 切换选项可见性
+          // toggle the options visibility
           toggleOptionsVisibility(readerModeToggle, "readerModeOptions");
 
           chrome.tabs.sendMessage(tab.id, {
@@ -255,7 +288,19 @@ function loadHTML(tabName, container) {
       });
     }
   
+
+
+
+
+
+
     // Proofreading Mode initialization
+    // const proofReadingOptions = document.getElementById("proofReadingOptions");
+    const proofReadingToggle = document.getElementById("proofReadingToggle");
+    const focusHighlightToggle = document.getElementById("focusHighlightToggle");
+    const gradientFlowToggle = document.getElementById("gradientFlowToggle");
+
+
     if (proofReadingToggle) {
       proofReadingToggle.addEventListener("change", () => {
         toggleOptionsVisibility(proofReadingToggle, "proofReadingOptions");
@@ -311,26 +356,8 @@ function loadHTML(tabName, container) {
   
 
 
-  // // proofReadingToggle 逻辑
-  // function proofReadingToggle (){
-  //   const proofReadingToggle = document.getElementById("proofReadingToggle");
-  //   const proofReadingOptions = document.getElementById("proofReadingOptions");
 
-  //   if (proofReadingToggle) {
-  //     proofReadingToggle.addEventListener("change", () => {
-  //       if (proofReadingToggle.checked) {
-  //         proofReadingOptions.classList.remove("hidden");
-  //       } else {
-  //         proofReadingOptions.classList.add("hidden");
-  //       }
-  //     });
-  //   } else {
-  //     console.error("Proofreading toggle not found!");
-  //   }
-  // }
-
-
-
+// helper functions set up
 
 function initializeCustmizeOptions() {
   const modeState = JSON.parse(localStorage.getItem("modeState")) || {};
@@ -362,6 +389,46 @@ function toggleOptionsVisibility(toggle, optionsId) {
   }
 }
 }
+
+//
+async function isValidTab(tab) {
+// 1. 未找到标签页
+if (!tab) {
+  console.warn('No active tab found');
+  return false;
+}
+
+// 2. 标签页 URL 不可访问
+if (!tab.url) {
+  console.warn('Cannot access tab URL');
+  return false;
+}
+
+// 3. 特殊协议页面
+if (tab.url.startsWith('chrome:')) {
+  console.warn('Cannot modify browser internal pages');
+  return false;
+}
+  
+  // check if the tab is a special page
+  const invalidProtocols = [
+    'chrome:',  // chrome://  Chrome 浏览器内部页面
+    'chrome-extension:',  // chrome-extension://  Chrome 扩展程序页面
+    'edge:',  // edge://  Edge 浏览器内部页面
+    'about:',  // about://  Chrome 浏览器内部页面
+    'data:'  // data://  Chrome 浏览器内部页面  
+  ];
+  return !invalidProtocols.some(protocol => tab.url.startsWith(protocol));
+}
+
+
+
+
+
+
+
+
+
 // function toogleOptionsVisiblityForMode(mode, toggle, optionsId) {
 //   const modeState = JSON.parse(localStorage.getItem("modeState")) || {};
 //   if (modeState[mode]) {
@@ -435,11 +502,21 @@ function toggleOptionsVisibility(toggle, optionsId) {
 //   }
 // }
 
-// 添加一个辅助函数来检查标签页是否可访问
-async function isValidTab(tab) {
-  if (!tab || !tab.url) return false;
-  
-  // 检查是否是特殊页面
-  const invalidProtocols = ['chrome:', 'chrome-extension:', 'edge:', 'about:', 'data:'];
-  return !invalidProtocols.some(protocol => tab.url.startsWith(protocol));
-}
+  // // proofReadingToggle 逻辑
+  // function proofReadingToggle (){
+  //   const proofReadingToggle = document.getElementById("proofReadingToggle");
+  //   const proofReadingOptions = document.getElementById("proofReadingOptions");
+
+  //   if (proofReadingToggle) {
+  //     proofReadingToggle.addEventListener("change", () => {
+  //       if (proofReadingToggle.checked) {
+  //         proofReadingOptions.classList.remove("hidden");
+  //       } else {
+  //         proofReadingOptions.classList.add("hidden");
+  //       }
+  //     });
+  //   } else {
+  //     console.error("Proofreading toggle not found!");
+  //   }
+  // }
+
